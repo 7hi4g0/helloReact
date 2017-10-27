@@ -13,8 +13,15 @@ module.exports = {
 
 	module: {
 		rules: [
-			{ test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-			{ enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+			{
+				test: /\.tsx?$/,
+				exclude: /(node_modules|bower_components)/,
+				loader: "babel-loader",
+				query: {
+					presets: [ "react", "es2015" ],
+					plugins: [ "react-html-attrs", "transform-class-properties", "transform-decorators-legacy" ]
+				}
+			}
 		]
 	},
 
